@@ -1,0 +1,111 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.CustomerOrder>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderSummary</title>
+    <style>
+        table {
+            margin: 30px;
+            background-color: cornsilk;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            background-color: chartreuse;
+            color: darkblue;
+        }
+
+        table tr th {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+
+        table tr td {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: medium;
+        }
+
+        div {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Summary</h1>
+    <p>
+        @Html.ActionLink("Create New", "PlaceOrder", "Dashboard")
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PizzaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Go To Employee Home Page", "Dash", "Dashboard")
+    </p>
+</body>
+</html>
+
+

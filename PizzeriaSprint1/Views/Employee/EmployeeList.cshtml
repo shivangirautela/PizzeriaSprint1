@@ -1,0 +1,39 @@
+﻿@model List<PizzeriaSprint1.Models.EmployeeTable>
+
+@{
+    ViewBag.Title = "EmployeeList";
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>FName</th>
+        <th>LName</th>
+        <th>Address</th>
+        <th>PhoneNo</th>
+        <th>City</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.Password</td>
+            <td>@item.FName</td>
+            <td>@item.LName</td>
+            <td>@item.Address</td>
+            <td>@item.PhoneNo</td>
+            <td>@item.City</td>
+            <td>@item.Email</td>
+            <td>
+                <a href="@Url.Action("Employee",new {item.EmployeeId,item.UserName,item.Password,item.FName,item.LName,item.Address,item.PhoneNo,item.City,item.Email})" class="btn btn-success">Edit</a>
+                <a href="@Url.Action("Delete",new { item.EmployeeId })" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+
+    }
+
+</table>
+

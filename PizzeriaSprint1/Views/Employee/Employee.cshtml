@@ -1,0 +1,61 @@
+﻿@model PizzeriaSprint1.Models.EmployeeTable
+@{
+    ViewBag.Title = "Employee";
+}
+<style>
+    .error {
+        color: red;
+    }
+</style>
+@using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group">
+            @Html.HiddenFor(x => x.EmployeeId)
+            <label>UserName</label>
+            @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.UserName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "error" })
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>FName</label>
+            @Html.ValidationMessageFor(x => x.FName, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.FName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>LName</label>
+            @Html.ValidationMessageFor(x => x.LName, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.LName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            @Html.ValidationMessageFor(x => x.Address, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>PhoneNo</label>
+            @Html.ValidationMessageFor(x => x.PhoneNo, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.PhoneNo, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            @Html.ValidationMessageFor(x => x.City, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "error" })
+            @Html.TextAreaFor(x => x.Email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-primary">Clear</button>
+            <a href="http://localhost:62504/Employee/EmployeeList" class="button">Employee List</a>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.PizzaTable>
+@{
+    ViewBag.Title = "DataPizza";
+}
+
+<h2>DataPizza</h2>
+
+
+@Html.Raw(TempData["CreateMessage"])
+@Html.Raw(TempData["UpdateMessage"])
+@Html.Raw(TempData[" DeleteMessage"])
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizzaname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizzaname)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImageUrl)" height="80" width="80" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PizzaId }) |
+             
+                @Html.ActionLink("Delete", "Delete", new { id = item.PizzaId })
+            </td>
+        </tr>
+    }
+
+</table>
+

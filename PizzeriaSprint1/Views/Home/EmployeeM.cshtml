@@ -1,0 +1,91 @@
+﻿
+@model PizzeriaSprint1.Models.EmployeeTable
+@{
+    ViewBag.Title = "Employee";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<style>
+    .body {
+        background: url(pic1.jpg);
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: larger;
+        background-color: coral;
+        color: darkblue;
+    }
+
+    .logtable {
+        margin: 50px;
+        border: 10px solid red;
+        background-color: burlywood;
+        color: blue;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bolder;
+        text-align: center;
+        padding: 50px;
+        padding-left: 350px;
+    }
+
+    table {
+        padding: 30px;
+    }
+</style>
+
+<div class="jumbotron" style="background-color:coral">
+    <h1>Welcome To Pizzeria</h1>
+</div>
+
+<div class="logtable">
+    @using (Html.BeginForm("Authorize", "Employee1", FormMethod.Post))
+    {
+    <table border="0" style="text-align:center">
+        <tr>
+            <th>@Html.LabelFor(model => model.UserName)</th>
+            <td>
+                @Html.EditorFor(model => model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+        </tr>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+        <tr>
+            <th>@Html.LabelFor(model => model.Password)</th>
+            <td>
+                @Html.EditorFor(model => model.Password, new { @class = "form-control", placeholder = "Password", @type = "password" })
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+        </tr>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <tr>
+            <td colspan="2">
+                <label class="field-validation-error">
+                    @Html.DisplayFor(model => model.LogError)
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Submit" />
+                <input type="reset" value="Clear" />
+            </td>
+        </tr>
+    </table>
+    }
+</div>
+
+
+

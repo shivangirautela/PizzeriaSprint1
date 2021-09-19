@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.PizzaTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Consume WEB API in MVC, To search Records</h2>
+    <h3>From SQL Server Database</h3>
+    <hr />
+
+    @using (Html.BeginForm("Index", "SearchPizzas", FormMethod.Get))
+    {
+        <span>ENter Employee Name :</span><input type="text" name="search" placeholder="Enter Pizza Name" />
+        <input type="submit" value="Search" name="submit" />
+
+    }
+</center>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizzaname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizzaname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+        </tr>
+    }
+
+</table>

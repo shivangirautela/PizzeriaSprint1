@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.PizzaTable>
+@{
+    Layout = null;
+}
+@using PizzeriaSprint1.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PlaceOrder</title>
+    <style>
+        table {
+            margin: 30px;
+            background-color: cornsilk;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            background-color: chartreuse;
+            color: darkblue;
+        }
+
+        table tr th {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+
+        table tr td {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: medium;
+        }
+
+        div {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body style="text-align:center">
+    <h1 style="font-size:xx-large">Pizza List</h1>
+    <table cellpadding="4" cellspacing="4" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+            <th>Buy</th>
+        </tr>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => p.PizzaId)</td>
+                <td>@Html.DisplayFor(modelItem => p.Pizzaname)</td>
+                <td><img src="@Url.Content(@p.ImageUrl)" width="80" height="80" alt="img" /></td>
+                <td id="price">@Html.DisplayFor(modelItem => p.Price)</td>
+                <td align="center"><a onclick="Change()" id="change" href="@Url.Action("Buy","Cart",new { id = p.PizzaId })">Add To Cart</a></td>
+            </tr>
+        }
+    </table>
+    <div>
+    </div>
+</body>
+</html>

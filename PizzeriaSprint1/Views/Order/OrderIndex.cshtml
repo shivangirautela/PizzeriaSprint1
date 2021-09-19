@@ -1,0 +1,60 @@
+﻿@model PizzeriaSprint1.Models.Customer
+@{
+    ViewBag.Title = "OrderIndex";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            background-color: chartreuse;
+            color: darkblue;
+        }
+        table{
+            font-size:20px;
+            font-family:'Times New Roman', Times, serif;
+            fill:greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Placing For Customers</h1>
+
+    @using (Html.BeginForm("OrderSummary", "Order", FormMethod.Post))
+    {
+        <div style="text-align:center">
+            <table border="1" style="text-align:center">
+                <tr>
+                    <th>@Html.LabelFor(model => model.FirstName)</th>
+                    <td>
+                        @Html.EditorFor(model => model.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Address)</th>
+                    <td>
+                        @Html.TextAreaFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">
+                            @Html.DisplayFor(model => model.OrderErrorMessage)
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" id="btn1" value="PlaceOrder" />
+        </div>
+    }
+</body>
+</html>
+
+

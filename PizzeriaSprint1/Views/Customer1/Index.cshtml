@@ -1,0 +1,129 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.PizzaTable>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+Welcome 
+
+<a  href="http://localhost:62504/Home/Customer">Logout</a>
+
+ 
+<h1>Place Order</h1>
+@using PizzeriaSprint1.Models;
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PlaceOrder</title>
+    <style>
+        table {
+            margin: 30px;
+            background-color: cornsilk;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            background-color: chartreuse;
+            color: darkblue;
+        }
+
+        table tr th {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+
+        table tr td {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: medium;
+        }
+
+        div {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body style="text-align:center">
+    <h1>Pizza List</h1>
+    <table cellpadding="4" cellspacing="4" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+            <th>Buy</th>
+        </tr>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => p.PizzaId)</td>
+                <td>@Html.DisplayFor(modelItem => p.Pizzaname)</td>
+                <td><img src="@Url.Content( @p.ImageUrl)" width="80" height="80" alt="img" /></td>
+                <td id="price">@Html.DisplayFor(modelItem => p.Price)</td>
+                <td align="center"><a onclick="Change()" id="change" href="@Url.Action("Buy","CustomerCart",new { id = p.PizzaId })">Add To Cart</a></td>
+            </tr>
+        }
+    </table>
+    <div>
+    </div>
+
+    @using (Html.BeginForm("Index", "Customer1", FormMethod.Post))
+    {
+        @Html.TextBox("Searching") <input type="submit" value="Search" style="text-align:left" />
+    }
+
+    <table border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.PizzaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Pizzaname)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(Model => Model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Price)
+            </th>
+            
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color: red">
+                    No matches found
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            @item.PizzaId
+        </td>
+        <td>
+            @item.Pizzaname
+        </td>
+
+        <td>
+        <img src="@Url.Content( @item.ImageUrl)" width="80" height="80" alt="img" />
+        </td>
+        <td>
+            @item.Price
+        </td>
+
+    </tr>
+            }
+        }
+    </table>
+</body>
+</html>
+

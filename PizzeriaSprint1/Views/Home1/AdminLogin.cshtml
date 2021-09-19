@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PizzeriaSprint1.Models.Login>
+
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+<h2>AdminLogin</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Welcome User @(User.Identity.IsAuthenticated?HttpContext.Current.User.Identity.Name:"Guest")</h1>
+    <a href="@Url.Action("SignOut","Home")">LogOut</a>
+}
+<div>
+    <a href="http://localhost:62504/Home1/DataPizza">
+        Add Pizza
+    </a>
+    <a href="http://localhost:62504/Employee/Employee">
+        Add Employee
+    </a>
+    <a href="http://localhost:62504/Employee/EmployeeList">
+        EmployeeList
+    </a>
+</div>

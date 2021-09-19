@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Layout = null;
+}
+@using PizzeriaSprint1.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cart Summary</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <style>
+        html {
+            background-color: lightseagreen;
+        }
+
+        table {
+            margin: 30px;
+            background-color: cornsilk;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: larger;
+            background-color: chartreuse;
+            color: darkblue;
+        }
+
+        table tr th {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+
+        table tr td {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: medium;
+        }
+
+        div {
+            background-color: aquamarine;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Cart Home Page</h1>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>Customize Option</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+            <th></th>
+        </tr>
+        @foreach (item item in (List<item>)Session["cart"])
+        {
+            <tr>
+                <td><a href="@Url.Action("Remove", "Cart", new { id = item.Pizza.PizzaId })">Delete</a></td>
+                <td>@item.Pizza.PizzaId</td>
+                <td>@item.Pizza.Pizzaname</td>
+                <td><img src="@Url.Content(item.Pizza.ImageUrl)" width="80" height="80" alt="img" /></td>
+                <td>@item.Pizza.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Pizza.Price * item.Quantity)</td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" id="email" name="contact" value="@item.psm[0].Price" onchange="getValue(this)">
+                    <label> @item.psm[0].Size</label>
+
+                    <input type="radio" id="phone" name="contact" value="@item.psm[1].Price" onchange="getValue(this)">
+                    <label> @item.psm[1].Size</label>
+
+                    <input type="radio" id="mail" name="contact" value="@item.psm[2].Price" onchange="getValue(this)">
+                    <label> @item.psm[2].Size</label>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td align="right" colspan="6">Sum</td>
+
+            <td>
+                @{
+
+                    List<item> cart = (List<item>)Session["cart"];
+                    var total = cart.Sum(item => item.Pizza.Price * item.Quantity);
+
+                    <script>
+                                    var ans;
+                                    function getValue(radio) {
+                                        var val = radio.value;
+                                        var total = parseInt(Number(@total));
+                                        var t = Number(document.getElementById('totalprice').value);
+                                        var display = document.getElementById('totalprice');
+                                        if (t > 0)
+                                            ans = parseInt(val) + parseInt(t);
+                                        else
+                                            ans = parseInt(val) + parseInt(total);
+                                        display.value = ans;
+                                    }
+
+
+                    </script>
+                }
+                @using (Html.BeginForm("OrderIndex", "Order", FormMethod.Post))
+                {
+                    <input type="text" name="totalprice" value="" id="totalprice" readonly="readonly" size="20" style="font-weight:bolder" />
+                    <div style="text-align:right">
+                        <input type="submit" size="20" width="100" value="PlaceOrder" />
+                    </div>
+                }
+                 </td>
+        </tr>
+
+    </table>
+
+    <br />
+    <div style="text-align:left">
+        <a href="@Url.Action("PlaceOrder","Dashboard")">Add More Items</a>
+    </div>
+    <br />
+    <br />
+</body>
+</html>
+
+
+
